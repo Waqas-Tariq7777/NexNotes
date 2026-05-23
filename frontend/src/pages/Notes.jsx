@@ -109,7 +109,7 @@ const LabelPopover = ({ selectedLabels, onToggle, isOpen, onClose, allLabels }) 
       initial={{ opacity: 0, y: 10, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-      className="absolute bottom-full left-0 mb-4 z-[60] glass-card p-6 rounded-3xl min-w-[250px] shadow-2xl ring-2 ring-primary/20 bg-background/95 backdrop-blur-3xl"
+      className="absolute bottom-full left-0 right-0 sm:right-auto mb-4 z-[60] glass-card p-4 sm:p-6 rounded-3xl min-w-0 sm:min-w-[250px] shadow-2xl ring-2 ring-primary/20 bg-background/95 backdrop-blur-3xl"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -194,7 +194,7 @@ const ReminderPicker = ({ reminder, setReminder, isOpen, onClose }) => {
       initial={{ opacity: 0, y: 10, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-      className="absolute bottom-full left-0 mb-4 z-[60] glass-card p-6 rounded-3xl min-w-[300px] shadow-2xl ring-2 ring-primary/20 bg-background/95 backdrop-blur-3xl"
+      className="absolute bottom-full left-0 right-0 sm:right-auto mb-4 z-[60] glass-card p-4 sm:p-6 rounded-3xl min-w-0 sm:min-w-[300px] shadow-2xl ring-2 ring-primary/20 bg-background/95 backdrop-blur-3xl"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -481,10 +481,10 @@ const NoteModal = ({ note, isOpen, onClose }) => {
       <motion.div 
         initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        className="relative w-full max-w-xl p-[2px] rounded-[2.5rem] bg-gradient-to-br from-primary via-secondary to-accent shadow-[0_0_50px_rgba(112,0,255,0.3)] overflow-hidden"
+        className="relative w-full max-w-xl p-[2px] rounded-[1.5rem] sm:rounded-[2.5rem] bg-gradient-to-br from-primary via-secondary to-accent shadow-[0_0_50px_rgba(112,0,255,0.3)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full glass-card rounded-[2.45rem] p-8 flex flex-col max-h-[85vh] bg-background/95 backdrop-blur-3xl">
+        <div className="relative w-full glass-card rounded-[1.45rem] sm:rounded-[2.45rem] p-4 sm:p-8 flex flex-col max-h-[90vh] sm:max-h-[85vh] bg-background/95 backdrop-blur-3xl">
           {/* Header Section */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
@@ -561,12 +561,12 @@ const NoteModal = ({ note, isOpen, onClose }) => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Note Title..."
-                    className="w-full bg-transparent border-none outline-none text-3xl font-black text-theme-primary tracking-tight placeholder:text-theme-muted/50 pb-2 border-b border-white/5 focus:border-primary/30 transition-colors"
+                    className="w-full bg-transparent border-none outline-none text-2xl sm:text-3xl font-black text-theme-primary tracking-tight placeholder:text-theme-muted/50 pb-2 border-b border-white/5 focus:border-primary/30 transition-colors"
                   />
                   <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary to-secondary group-focus-within:w-full transition-all duration-700" />
                 </div>
               ) : (
-                <h2 className="text-3xl font-black text-theme-primary tracking-tight leading-tight break-words bg-clip-text text-transparent bg-gradient-to-r from-theme-primary to-theme-primary/60">{title || 'Untitled'}</h2>
+                <h2 className="text-2xl sm:text-3xl font-black text-theme-primary tracking-tight leading-tight break-words bg-clip-text text-transparent bg-gradient-to-r from-theme-primary to-theme-primary/60">{title || 'Untitled'}</h2>
               )}
             </div>
 
@@ -606,9 +606,9 @@ const NoteModal = ({ note, isOpen, onClose }) => {
           </div>
 
           {/* Footer Actions */}
-          <div className="flex items-center justify-between pt-6 mt-4 border-t border-white/10 relative">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 bg-white/5 p-1 rounded-2xl ring-1 ring-white/10">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between pt-6 mt-4 border-t border-white/10 relative">
+            <div className="flex items-center justify-between sm:justify-start gap-2">
+              <div className="flex items-center gap-1 bg-white/5 p-1 rounded-2xl ring-1 ring-white/10 w-full sm:w-auto justify-around sm:justify-start">
                 {isEditing && (
                   <>
                     <button 
@@ -662,19 +662,19 @@ const NoteModal = ({ note, isOpen, onClose }) => {
               <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange} className="hidden" />
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-end gap-3 w-full sm:w-auto">
               {isEditing ? (
                 <>
                   <button 
                     onClick={() => setIsEditing(false)}
-                    className="px-6 py-2.5 font-bold text-theme-muted hover:text-red-400 transition-colors cursor-pointer text-sm"
+                    className="px-6 py-2.5 font-bold text-theme-muted hover:text-red-400 transition-colors cursor-pointer text-sm flex-1 sm:flex-none text-center"
                   >
                     Discard
                   </button>
                   <button 
                     onClick={handleUpdate}
                     disabled={loading}
-                    className="relative group overflow-hidden px-8 py-2.5 rounded-xl font-bold text-sm text-black cursor-pointer transition-all active:scale-95"
+                    className="relative group overflow-hidden px-8 py-2.5 rounded-xl font-bold text-sm text-black cursor-pointer transition-all active:scale-95 flex-1 sm:flex-none text-center"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent" />
                     <span className="relative z-10">{loading ? "Syncing..." : "Update Note"}</span>
@@ -683,7 +683,7 @@ const NoteModal = ({ note, isOpen, onClose }) => {
               ) : (
                 <button 
                   onClick={() => setIsEditing(true)}
-                  className="flex items-center gap-2 px-8 py-2.5 bg-white/10 hover:bg-white/20 text-theme-primary rounded-xl font-bold text-sm transition-all border border-white/10 cursor-pointer active:scale-95 shadow-xl hover:shadow-primary/10"
+                  className="flex items-center justify-center gap-2 px-8 py-2.5 bg-white/10 hover:bg-white/20 text-theme-primary rounded-xl font-bold text-sm transition-all border border-white/10 cursor-pointer active:scale-95 shadow-xl hover:shadow-primary/10 w-full sm:w-auto"
                 >
                   <Edit3 size={18} className="text-primary" />
                   <span>Customize Note</span>
@@ -1176,7 +1176,7 @@ const Notes = () => {
               <motion.div 
                 {...(!isMobile ? { layout: true } : {})}
                 initial={false}
-                className={`composer-card rgb-border transition-all duration-500 relative z-40 overflow-hidden ${isExpanded ? 'w-full p-10 rounded-[2.5rem]' : 'w-full md:w-auto md:min-w-[300px] p-2 rounded-[1.5rem]'}`}
+                className={`composer-card rgb-border transition-all duration-500 relative z-40 overflow-hidden ${isExpanded ? 'w-full p-4 sm:p-10 rounded-[1.5rem] sm:rounded-[2.5rem]' : 'w-full md:w-auto md:min-w-[300px] p-2 rounded-[1.5rem]'}`}
               >
                 {!isExpanded ? (
                   <div 
@@ -1227,7 +1227,7 @@ const Notes = () => {
                       value={noteTitle}
                       onChange={(e) => setNoteTitle(e.target.value)}
                       placeholder="Title"
-                      className="w-full bg-transparent border-none outline-none text-3xl font-bold text-theme-primary tracking-tight placeholder:text-theme-muted mb-2"
+                      className="w-full bg-transparent border-none outline-none text-2xl sm:text-3xl font-bold text-theme-primary tracking-tight placeholder:text-theme-muted mb-2"
                     />
 
                     <div className="flex flex-col gap-2">
@@ -1243,8 +1243,8 @@ const Notes = () => {
                       <ChecklistEditor checklists={checklists} setChecklists={setChecklists} />
                     </div>
 
-                    <div className="flex items-center justify-between pt-8 mt-4 border-t border-white/5 relative">
-                      <div className="flex items-center gap-1">
+                    <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between pt-8 mt-4 border-t border-white/5 relative">
+                      <div className="flex items-center justify-between sm:justify-start gap-1 bg-white/5 p-1 rounded-2xl ring-1 ring-white/10 w-full sm:w-auto justify-around sm:justify-start">
                         <button 
                           onClick={() => fileInputRef.current.click()} 
                           className="p-3 text-theme-muted hover:text-primary transition-all rounded-xl hover:bg-white/5 cursor-pointer"
@@ -1292,17 +1292,17 @@ const Notes = () => {
                         </div>
                         <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange} className="hidden" />
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-end gap-3 w-full sm:w-auto">
                         <button 
                           onClick={resetForm} 
-                          className="px-6 py-2.5 font-bold text-theme-muted hover:text-theme-primary transition-colors text-sm cursor-pointer"
+                          className="px-6 py-2.5 font-bold text-theme-muted hover:text-theme-primary transition-colors text-sm cursor-pointer flex-1 sm:flex-none text-center"
                         >
                           Discard
                         </button>
                         <button 
                           onClick={handleAddNote} 
                           disabled={loading} 
-                          className="btn-primary py-2.5 px-8 rounded-xl shadow-[0_0_20px_rgba(0,242,255,0.2)] text-sm cursor-pointer"
+                          className="btn-primary py-2.5 px-8 rounded-xl shadow-[0_0_20px_rgba(0,242,255,0.2)] text-sm cursor-pointer flex-1 sm:flex-none text-center"
                         >
                           {loading ? "Saving..." : "Save Note"}
                         </button>

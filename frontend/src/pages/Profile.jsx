@@ -137,7 +137,7 @@ const Profile = () => {
           
           {/* Left Panel - Identity Card */}
           <div className="w-full lg:w-1/3 flex flex-col gap-6">
-            <div className="glass-card p-10 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+            <div className="glass-card p-6 sm:p-10 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
               {/* Background Accent */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary to-accent" />
               
@@ -219,8 +219,8 @@ const Profile = () => {
 
           {/* Right Panel - Settings Form */}
           <div className="w-full lg:w-2/3">
-            <div className="glass-card p-8 md:p-12 shadow-2xl h-full">
-              <div className="flex items-center justify-between mb-12">
+            <div className="glass-card p-5 sm:p-8 md:p-12 shadow-2xl h-full">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-2xl bg-primary/10 text-primary">
                     <Edit2 size={24} />
@@ -233,7 +233,7 @@ const Profile = () => {
                 {!isEditing && (
                   <button 
                     onClick={() => setIsEditing(true)}
-                    className="btn-primary py-2.5 px-6 text-sm rounded-xl flex items-center gap-2 shadow-lg"
+                    className="w-full sm:w-auto btn-primary py-2.5 px-6 text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg"
                   >
                     <Pencil size={16} />
                     Edit Profile
@@ -341,12 +341,12 @@ const Profile = () => {
                   )}
                 </AnimatePresence>
 
-                {isEditing ? (
-                  <div className="flex items-center gap-4 pt-10">
+                 {isEditing ? (
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-10">
                     <button 
                       type="submit" 
                       disabled={loading}
-                      className="btn-primary flex-1 py-4 flex items-center justify-center gap-3 shadow-xl shadow-primary/20"
+                      className="btn-primary flex-grow py-4 flex items-center justify-center gap-3 shadow-xl shadow-primary/20"
                     >
                       {loading ? <Loader2 className="animate-spin" size={22} /> : <Save size={22} />}
                       <span className="text-lg">Save Profile</span>
@@ -354,7 +354,7 @@ const Profile = () => {
                     <button 
                       type="button" 
                       onClick={handleCancel}
-                      className="px-10 py-4 rounded-2xl border border-soft-white/10 text-muted-gray hover:bg-soft-white/5 hover:text-soft-white transition-all flex items-center gap-2 font-bold"
+                      className="w-full sm:w-auto px-6 py-4 rounded-2xl border border-soft-white/10 text-muted-gray hover:bg-soft-white/5 hover:text-soft-white transition-all flex items-center justify-center gap-2 font-bold"
                     >
                       <X size={20} />
                       Cancel
