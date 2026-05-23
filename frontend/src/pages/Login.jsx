@@ -80,14 +80,20 @@ const Login = () => {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center p-6 md:p-12 lg:p-20 relative z-10"
+        className="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16 relative z-10 pt-28 pb-12 md:py-12"
       >
-        <div className="w-full max-w-md">
-          <div className="md:hidden flex flex-col items-center mb-12">
+        {/* Mobile Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10 md:hidden" />
+        
+        <div className="w-full max-w-md glass-card p-6 sm:p-10 relative overflow-hidden shadow-2xl bg-white/[0.03] backdrop-blur-[30px] border-white/10">
+          {/* Internal Accent Glow */}
+          <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-10 bg-primary pointer-events-none" />
+          
+          <div className="md:hidden flex flex-col items-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
               <Notebook className="text-white w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-bold text-white">NexNotes</h1>
+            <h1 className="text-3xl font-bold text-white tracking-tight">Nex<span className="text-primary">Notes</span></h1>
           </div>
           <LoginForm />
         </div>
