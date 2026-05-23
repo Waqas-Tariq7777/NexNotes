@@ -80,7 +80,7 @@ const Signup = () => {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full md:w-1/2 lg:w-[40%] flex items-start md:items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16 relative z-10 pt-36 pb-16 md:py-12"
+        className="w-full md:w-1/2 lg:w-[50%] flex items-start md:items-center justify-center p-4 sm:p-8 md:p-12 md:mt-6 lg:p-16 relative z-10 pt-36 pb-16 md:py-12"
       >
         {/* Mobile Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none -z-10 md:hidden" />
