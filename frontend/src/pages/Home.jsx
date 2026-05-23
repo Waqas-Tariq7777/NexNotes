@@ -1,6 +1,8 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection';
 import FeaturesSection from '../components/FeaturesSection';
+import WorkspacePlayground from '../components/WorkspacePlayground';
+import PricingSection from '../components/PricingSection';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
@@ -18,6 +20,8 @@ const Home = () => {
     >
       <HeroSection />
       <FeaturesSection />
+      <WorkspacePlayground />
+      <PricingSection />
       
       {/* Dynamic CTA Section before footer */}
       <section className="py-24 relative z-10">

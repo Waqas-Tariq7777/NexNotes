@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { 
   Search, 
   Plus, 
@@ -698,6 +699,7 @@ const NoteModal = ({ note, isOpen, onClose }) => {
 
 const NoteCard = ({ note, onClick }) => {
   const { updateNote, deleteNote } = useNoteStore();
+  const isMobile = useIsMobile();
 
   const handleTogglePin = async (e) => {
     e.stopPropagation();
@@ -737,16 +739,23 @@ const NoteCard = ({ note, onClick }) => {
 
   return (
     <motion.div
-      layout
+      {...(!isMobile ? { layout: true, whileHover: { y: -8, scale: 1.02 } } : {})}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ y: -8, scale: 1.02 }}
       onClick={() => onClick(note)}
-      className={`group relative flex flex-col h-[300px] p-6 rounded-[2.5rem] cursor-pointer transition-all duration-700 overflow-hidden border border-white/10 bg-white/5 backdrop-blur-[40px] hover:bg-white/10 hover:border-primary/30 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-primary/20 ${urgent ? 'ring-2 ring-red-500/50' : ''}`}
+      className={`group relative flex flex-col h-[300px] p-6 rounded-[2.5rem] cursor-pointer transition-all ${
+        isMobile ? 'duration-200' : 'duration-700'
+      } overflow-hidden border border-white/10 ${
+        isMobile
+          ? 'bg-midnight-navy/95'
+          : 'bg-white/5 backdrop-blur-[40px] hover:bg-white/10 hover:border-primary/30 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-primary/20'
+      } ${urgent ? 'ring-2 ring-red-500/50' : ''}`}
     >
       {/* Dynamic Background Glow from Mockup */}
-      <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-10 transition-opacity duration-1000 group-hover:opacity-30 bg-gradient-to-br ${urgent ? 'from-red-500 to-orange-500' : 'from-primary to-secondary'}`} />
+      {!isMobile && (
+        <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-10 transition-opacity duration-1000 group-hover:opacity-30 bg-gradient-to-br ${urgent ? 'from-red-500 to-orange-500' : 'from-primary to-secondary'}`} />
+      )}
 
       <div className="relative z-10 flex flex-col h-full">
         {/* Header: Title and Pin */}
@@ -818,7 +827,11 @@ const NoteCard = ({ note, onClick }) => {
             </span>
           </div>
 
-          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+          <div className={`flex items-center gap-1 transition-all transform ${
+            isMobile 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0'
+          }`}>
             {note.isTrash ? (
               <>
                 <button onClick={handleRestore} className="p-2 text-theme-muted hover:text-primary transition-colors cursor-pointer" title="Restore"><RotateCcw size={14} /></button>
@@ -840,6 +853,7 @@ const NoteCard = ({ note, onClick }) => {
 };
 
 const Notes = () => {
+  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState('notes');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [noteTitle, setNoteTitle] = useState('');
@@ -1160,7 +1174,7 @@ const Notes = () => {
             {/* Composer */}
             {activeTab === 'notes' && (
               <motion.div 
-                layout
+                {...(!isMobile ? { layout: true } : {})}
                 initial={false}
                 className={`composer-card rgb-border transition-all duration-500 relative z-40 overflow-hidden ${isExpanded ? 'w-full p-10 rounded-[2.5rem]' : 'w-full md:w-auto md:min-w-[300px] p-2 rounded-[1.5rem]'}`}
               >

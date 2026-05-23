@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Notebook, LogOut, User, ChevronRight, Sun, Moon, Layout, UserCircle } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 import { useThemeStore } from '../store/themeStore';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const Navbar = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -74,12 +76,16 @@ const Navbar = () => {
     <>
       <motion.nav 
         initial={false}
-        animate={{
-          y: scrolled ? 16 : 0,
-          paddingTop: scrolled ? '0px' : '8px',
-          paddingBottom: scrolled ? '0px' : '8px'
-        }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        animate={
+          isMobile 
+            ? { y: 0 }
+            : {
+                y: scrolled ? 16 : 0,
+                paddingTop: scrolled ? '0px' : '8px',
+                paddingBottom: scrolled ? '0px' : '8px'
+              }
+        }
+        transition={isMobile ? { duration: 0.1 } : { type: 'spring', stiffness: 300, damping: 30 }}
         className="fixed top-0 left-0 right-0 z-[60] px-4 md:px-6 pointer-events-none"
       >
         <div className={`container mx-auto transition-all duration-500 ease-out ${scrolled ? 'max-w-5xl' : 'max-w-full'}`}>
@@ -231,7 +237,7 @@ const Navbar = () => {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              transition={{ ease: "easeInOut", duration: 0.25 }}
               className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-background z-[60] md:hidden border-l border-soft-white/10 shadow-2xl flex flex-col"
             >
               {/* Menu Header */}

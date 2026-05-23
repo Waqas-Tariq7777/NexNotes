@@ -1,49 +1,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '../hooks/useIsMobile';
+import { useLocation } from 'react-router-dom';
 
 const AnimatedBackground = () => {
+  const isMobile = useIsMobile();
+  const location = useLocation();
+  const isNotesPage = location.pathname === '/notes';
+
+  // Completely disable floating orbs on mobile or on notes page for flawless performance
+  const showOrbs = !isMobile && !isNotesPage;
+
   return (
     <div className="fixed inset-0 -z-20 overflow-hidden bg-rich-black">
       {/* Dynamic Mesh Layer */}
       <div className="absolute inset-0 animate-mesh opacity-20 dark:opacity-30" />
       
       {/* Floating Orbs */}
-      <div className="absolute inset-0">
-        <motion.div
-          animate={{
-            x: [0, 100, -50, 0],
-            y: [0, 50, 100, 0],
-            scale: [1, 1.2, 0.8, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"
-          style={{ willChange: "transform, opacity" }}
-        />
-        
-        <motion.div
-          animate={{
-            x: [0, -80, 50, 0],
-            y: [0, 100, -50, 0],
-            scale: [1, 1.3, 1, 1.3],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[40%] right-[5%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[100px]"
-          style={{ willChange: "transform, opacity" }}
-        />
+      {showOrbs && (
+        <div className="absolute inset-0">
+          <motion.div
+            animate={{
+              x: [0, 100, -50, 0],
+              y: [0, 50, 100, 0],
+              scale: [1, 1.2, 0.8, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"
+            style={{ willChange: "transform, opacity" }}
+          />
+          
+          <motion.div
+            animate={{
+              x: [0, -80, 50, 0],
+              y: [0, 100, -50, 0],
+              scale: [1, 1.3, 1, 1.3],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[40%] right-[5%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[100px]"
+            style={{ willChange: "transform, opacity" }}
+          />
 
-        <motion.div
-          animate={{
-            x: [0, 50, -50, 0],
-            y: [0, -100, 50, 0],
-            opacity: [0.15, 0.3, 0.15],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] bg-accent/20 rounded-full blur-[80px]"
-          style={{ willChange: "transform, opacity" }}
-        />
-      </div>
+          <motion.div
+            animate={{
+              x: [0, 50, -50, 0],
+              y: [0, -100, 50, 0],
+              opacity: [0.15, 0.3, 0.15],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[10%] left-[20%] w-[400px] h-[400px] bg-accent/20 rounded-full blur-[80px]"
+            style={{ willChange: "transform, opacity" }}
+          />
+        </div>
+      )}
 
       {/* Noise Texture */}
       <div 

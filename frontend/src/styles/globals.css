@@ -213,3 +213,31 @@
   opacity: 0.8;
   border-radius: 1rem;
 }
+
+/* Mobile-Specific Performance Optimizations */
+@media (max-width: 767px) {
+  /* Disable repaint-heavy background position mesh animation */
+  .animate-mesh {
+    animation: none !important;
+    background-size: cover !important;
+  }
+
+  /* Disable heavy infinite background rotation on RGB buttons */
+  .btn-rgb::before {
+    animation: none !important;
+    background-size: cover !important;
+  }
+
+  /* Optimize RGB border by disabling expensive box-shadow pulses, only cycling light border-color */
+  @keyframes rgb-glow-mobile {
+    0% { border-color: var(--neon-cyan); }
+    50% { border-color: var(--electric-purple); }
+    100% { border-color: var(--neon-cyan); }
+  }
+  
+  .rgb-border {
+    animation: rgb-glow-mobile 4s ease infinite !important;
+    box-shadow: none !important;
+  }
+}
+
