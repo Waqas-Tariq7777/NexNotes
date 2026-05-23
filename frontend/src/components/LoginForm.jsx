@@ -80,20 +80,20 @@ const LoginForm = () => {
   };
 
   const getInputClass = (name) => {
-    const baseClass = "w-full bg-soft-white/5 border rounded-2xl py-4 pl-12 pr-4 text-soft-white placeholder:text-muted-gray focus:outline-none transition-all duration-300 shadow-inner";
+    const baseClass = "w-full bg-soft-white/5 border rounded-2xl py-2.5 sm:py-3 pl-12 pr-4 text-soft-white placeholder:text-muted-gray focus:outline-none transition-all duration-300 shadow-inner";
     if (touched[name] && errors[name]) return `${baseClass} border-red-500/50 focus:ring-2 focus:ring-red-500/20 focus:border-red-500`;
     return `${baseClass} border-soft-white/10 focus:ring-2 focus:ring-primary/20 focus:border-primary/30`;
   };
 
   return (
     <div className="w-full">
-      <div className="mb-10">
-        <h2 className="text-4xl font-bold text-soft-white mb-3">Login</h2>
-        <p className="text-muted-gray text-lg">Glad to have you back!</p>
+      <div className="mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-soft-white mb-1">Login</h2>
+        <p className="text-muted-gray text-sm sm:text-base">Glad to have you back!</p>
       </div>
 
-      <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-        <div className="space-y-2">
+      <form className="space-y-3" onSubmit={handleSubmit} noValidate>
+        <div className="space-y-1">
           <div className="flex justify-between items-center px-1">
             <label className="text-sm font-medium text-muted-gray">Email Address</label>
             <AnimatePresence>
@@ -118,7 +118,7 @@ const LoginForm = () => {
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="flex justify-between items-center px-1">
             <label className="text-sm font-medium text-muted-gray">Password</label>
             <Link to="/forgot-password" size="sm" className="text-xs text-primary hover:text-soft-white transition-all">Forgot password?</Link>
@@ -140,21 +140,21 @@ const LoginForm = () => {
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full btn-primary py-4 rounded-2xl text-lg font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full btn-primary py-2.5 sm:py-3 rounded-2xl text-base sm:text-lg font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? <Loader2 className="animate-spin" size={20} /> : <LogIn size={20} />}
           <span>{loading ? "Signing In..." : "Sign In"}</span>
         </button>
       </form>
 
-      <div className="mt-10 text-center">
-        <p className="text-muted-gray">
+      <div className="mt-4 text-center">
+        <p className="text-muted-gray text-sm">
           New here? <Link to="/signup" className="text-primary font-bold hover:text-soft-white transition-all">Create an account</Link>
         </p>
       </div>
 
-      <div className="mt-10">
-        <div className="flex items-center gap-4 mb-8">
+      <div className="mt-4">
+        <div className="flex items-center gap-4 mb-3">
           <div className="h-[1px] flex-grow bg-soft-white/10" />
           <span className="text-[10px] text-muted-gray uppercase tracking-[0.2em] font-bold">Or continue with</span>
           <div className="h-[1px] flex-grow bg-soft-white/10" />
@@ -164,12 +164,12 @@ const LoginForm = () => {
           type="button"
           onClick={() => googleLogin()}
           disabled={loading}
-          className="w-full btn-rgb group flex items-center justify-center gap-4 py-4 px-6 transition-all duration-300 active:scale-95"
+          className="w-full btn-rgb group flex items-center justify-center gap-4 py-2.5 sm:py-3 px-6 transition-all duration-300 active:scale-95"
         >
           <div className="flex items-center justify-center bg-white rounded-full p-1 group-hover:scale-110 transition-transform duration-300 shadow-sm">
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />
           </div>
-          <span className="text-lg font-bold text-white dark:text-soft-white group-hover:text-primary transition-colors duration-300">Continue with Google</span>
+          <span className="text-base sm:text-lg font-bold text-white dark:text-soft-white group-hover:text-primary transition-colors duration-300">Continue with Google</span>
         </button>
       </div>
     </div>

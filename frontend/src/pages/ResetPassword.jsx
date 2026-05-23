@@ -38,7 +38,7 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden">
+        <div className="h-[calc(100vh-72px)] md:h-[calc(100vh-80px)] flex items-center justify-center p-4 bg-background relative overflow-hidden">
             {/* Animated Background Orbs */}
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[120px] animate-pulse" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
@@ -46,14 +46,14 @@ const ResetPassword = () => {
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md relative z-10"
+                className="w-full max-w-md relative z-10 animate-fade-in-up"
             >
-                <div className="glass-card p-8 md:p-10 rounded-[2.5rem] border border-white/10 shadow-2xl backdrop-blur-3xl bg-white/5">
-                    <div className="text-center mb-8">
-                        <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-accent/20">
-                            <ShieldCheck size={32} className="text-black" />
+                <div className="glass-card p-6 sm:p-8 rounded-[2rem] border border-white/10 shadow-2xl backdrop-blur-3xl bg-white/5">
+                    <div className="text-center mb-5">
+                        <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-accent/20">
+                            <ShieldCheck size={24} className="text-black" />
                         </div>
-                        <h2 className="text-3xl font-black text-white tracking-tight mb-2">Set New Password</h2>
+                        <h2 className="text-2xl font-black text-white tracking-tight mb-1">Set New Password</h2>
                         <p className="text-theme-muted text-sm px-4">Secure your account with a new, strong password.</p>
                     </div>
 
@@ -61,19 +61,19 @@ const ResetPassword = () => {
                         <motion.div 
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            className="text-center py-6"
+                            className="text-center py-4"
                         >
                             <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <CheckCircle2 className="text-green-500" size={24} />
                             </div>
                             <p className="text-green-400 font-bold mb-2 text-xl">Success!</p>
-                            <p className="text-theme-muted text-sm mb-6">Your password has been reset. Redirecting to login...</p>
+                            <p className="text-theme-muted text-sm mb-4">Your password has been reset. Redirecting to login...</p>
                             <Loader2 className="animate-spin text-primary mx-auto" size={24} />
                         </motion.div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-4">
-                                <div className="space-y-2">
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="space-y-3">
+                                <div className="space-y-1">
                                     <label className="text-xs font-black uppercase tracking-widest text-theme-muted ml-1">New Password</label>
                                     <div className="relative group">
                                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-theme-muted group-focus-within:text-primary transition-colors">
@@ -85,7 +85,7 @@ const ResetPassword = () => {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             placeholder="••••••••"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all text-white placeholder:text-white/20"
+                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-2.5 sm:py-3 pl-12 pr-12 outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all text-white placeholder:text-white/20"
                                         />
                                         <button 
                                             type="button"
@@ -97,7 +97,7 @@ const ResetPassword = () => {
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
+                                <div className="space-y-1">
                                     <label className="text-xs font-black uppercase tracking-widest text-theme-muted ml-1">Confirm Password</label>
                                     <div className="relative group">
                                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-theme-muted group-focus-within:text-primary transition-colors">
@@ -109,7 +109,7 @@ const ResetPassword = () => {
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                             placeholder="••••••••"
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all text-white placeholder:text-white/20"
+                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-2.5 sm:py-3 pl-12 pr-4 outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all text-white placeholder:text-white/20"
                                         />
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ const ResetPassword = () => {
                                 <motion.div 
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-medium text-center"
+                                    className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-medium text-center"
                                 >
                                     {error}
                                 </motion.div>
@@ -128,13 +128,13 @@ const ResetPassword = () => {
                             <button 
                                 type="submit" 
                                 disabled={loading}
-                                className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-2 group relative overflow-hidden"
+                                className="w-full btn-primary py-2.5 sm:py-3 rounded-2xl flex items-center justify-center gap-2 group relative overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                                 {loading ? (
                                     <Loader2 className="animate-spin" size={20} />
                                 ) : (
-                                    <span className="relative z-10 font-black uppercase tracking-widest">Reset Password</span>
+                                    <span className="relative z-10 font-black uppercase tracking-widest text-sm">Reset Password</span>
                                 )}
                             </button>
 
