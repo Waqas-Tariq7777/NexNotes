@@ -8,7 +8,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row overflow-hidden bg-rich-black">
       {/* Left Side - Visuals */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -17,15 +17,15 @@ const Signup = () => {
         {/* Background Decorative Elements */}
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[150px] animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] animate-pulse" />
-        
+
         <div className="relative z-10 max-w-lg text-center">
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -20, 0],
               scale: [1, 1.1, 1]
             }}
-            transition={{ 
-              duration: 5, 
+            transition={{
+              duration: 5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -35,8 +35,8 @@ const Signup = () => {
               <Notebook className="text-white w-12 h-12" />
             </div>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -44,8 +44,8 @@ const Signup = () => {
           >
             Join <span className="text-gradient">NexNotes</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
@@ -60,7 +60,7 @@ const Signup = () => {
               { icon: <Shield size={24} />, label: "Privacy" },
               { icon: <Sparkles size={24} />, label: "Beauty" }
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -76,19 +76,19 @@ const Signup = () => {
       </motion.div>
 
       {/* Right Side - Form */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16 relative z-10 pt-28 pb-12 md:py-12"
+        className="w-full md:w-1/2 lg:w-[40%] flex items-start md:items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16 relative z-10 pt-36 pb-16 md:py-12"
       >
         {/* Mobile Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none -z-10 md:hidden" />
-        
+
         <div className="w-full max-w-md glass-card p-6 sm:p-10 relative overflow-hidden shadow-2xl bg-white/[0.03] backdrop-blur-[30px] border-white/10">
           {/* Internal Accent Glow */}
           <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-10 bg-secondary pointer-events-none" />
-          
+
           <div className="md:hidden flex flex-col items-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
               <Notebook className="text-white w-8 h-8" />
