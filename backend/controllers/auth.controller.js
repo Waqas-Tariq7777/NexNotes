@@ -84,8 +84,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: "None",
         path: "/",
     };
 
@@ -107,8 +107,8 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: "None",
         path: "/",
     };
 
@@ -195,8 +195,8 @@ const googleLogin = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: "None",
         path: "/",
     };
 
