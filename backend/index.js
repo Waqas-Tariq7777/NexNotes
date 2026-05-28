@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import authRouter from "./routes/auth.routes.js";
 import noteRouter from "./routes/note.routes.js";
+import connectDB from "./DB/connect.js";
 // 1. Configuration
 dotenv.config({ path: "./.env" });
 
@@ -54,19 +55,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then((connectionInstance) => {
-    console.log(
-      `MONGODB Connected Successfully !! Host: ${connectionInstance.connection.host}`,
-    );
-
-      app.listen(port, () => {
-        console.log("Server is successfully running on port: ", port);
-      });
-  })
-  .catch((error) => {
-    console.log("MongoDB connection Failed:", error);
-  });
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+});
 
 export default app;
