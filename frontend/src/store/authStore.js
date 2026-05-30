@@ -52,12 +52,16 @@ export const useAuthStore = create((set, get) => ({
       if (res.status === 200) {
         set({ user: data.user, loading: false });
         localStorage.setItem("user", JSON.stringify(data.user));
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+        }
         toast.success("Login successful");
         if (onSuccess) onSuccess(data.user);
       }
     } catch (error) {
       set({ loading: false, user: null });
       localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
       const message = error.response?.data?.message || "Login failed";
       toast.error(message);
     }
@@ -77,12 +81,16 @@ export const useAuthStore = create((set, get) => ({
       if (res.status === 200) {
         set({ user: data.user, loading: false });
         localStorage.setItem("user", JSON.stringify(data.user));
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+        }
         toast.success("Google login successful");
         if (onSuccess) onSuccess(data.user);
       }
     } catch (error) {
       set({ loading: false, user: null });
       localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
       const message = error.response?.data?.message || "Google login failed";
       toast.error(message);
     }
@@ -94,11 +102,13 @@ export const useAuthStore = create((set, get) => ({
       await axios.post(`${baseUrl}/api/auth/logout`, {}, { withCredentials: true });
       set({ user: null });
       localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
       toast.info("Logged out successfully");
     } catch (error) {
       // Even if server call fails, we clear local state
       set({ user: null });
       localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
       toast.error("Logout error, but cleared session");
     }
   },
@@ -115,6 +125,7 @@ export const useAuthStore = create((set, get) => ({
     } catch (error) {
       set({ user: null, isCheckingAuth: false });
       localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
     }
   },
 
